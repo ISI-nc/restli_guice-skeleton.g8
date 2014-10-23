@@ -1,0 +1,27 @@
+apply plugin: 'war'
+apply plugin: 'pegasus'
+
+ext.apiProject = project(':'+rootProject.name+'-api')
+dependencies {
+  compile project(path: ':'+rootProject.name+'-api', configuration: 'dataTemplate')
+  compile project(path: ':'+rootProject.name+'-api') 	
+  compile spec.product.pegasus.restliServer
+  compile spec.product.pegasus.guiceBridge
+}
+
+// Below is only used for running jetty from within gradle for demo purposes
+// e.g. 'gradle JettyRunWar'.
+
+configurations {
+  jetty8
+}
+
+dependencies {
+  jetty8 "org.mortbay.jetty:jetty-runner:8.1.15.v20140411"
+}
+
+task JettyRunWar(type: JavaExec) {
+  main = "org.mortbay.jetty.runner.Runner"
+  args = ['--port', '8080',war.archivePath]
+  classpath configurations.jetty8
+}

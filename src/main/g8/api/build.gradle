@@ -1,0 +1,24 @@
+apply plugin: 'pegasus'
+
+//ajout des librairy pour publication dans repo et utilisation
+//peut ne pas fonctionné si pas de directory mainGeneratedRest
+artifacts {
+ // archives mainRestClientJar
+  archives mainDataTemplateJar
+  archives jar
+} 
+//utilise si les library api et/ou rest doivent etre installé dans repositori local
+configure(install.repositories.mavenInstaller) {
+  addFilter('rest-client') {artifact, file ->
+    artifact.name == rootProject.name + '-api-rest-client'
+  }.artifactId = rootProject.name + '-rest-client'
+
+  addFilter('data-template') {artifact, file ->
+    artifact.name == rootProject.name + '-api-data-template'
+  }.artifactId = rootProject.name + '-data-template'
+  // artifact names for 'data-model', 'avro-schema' and 'rest-model' may be added as well if needed
+  addFilter('api') {artifact, file ->
+    artifact.name == rootProject.name + '-api'
+  }.artifactId = rootProject.name + '-api'
+  
+}
