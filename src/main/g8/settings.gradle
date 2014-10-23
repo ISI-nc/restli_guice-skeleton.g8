@@ -1,2 +1,6 @@
-include '$name;format="norm"$-api'
-include '$name;format="norm"$-server'
+rootProject.name='$name;format="norm"$'
+include 'api'
+include 'server'
+
+project(":api").name = rootProject.name + "-api"
+project(":server").name = rootProject.name+"-server"

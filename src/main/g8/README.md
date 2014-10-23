@@ -1,10 +1,10 @@
 Welcome to Rest.li
 ==================
 
-This is a rest.li application using gradle as the build system.
+This is a rest.li application using Guice and gradle as the build system.
 
 
-To build for the first time, use gradle 1.8 or greater and run:
+To build for the first time, use gradle 2.0 or greater and run:
 
 ```
 gradle build
@@ -16,5 +16,5 @@ You can then run the server with:
 
 Once running, you can send a GET request to the server with:
 
-`curl http://localhost:8080/$name;format="camel"$-server/$restli_resource;format="camel"$/1`
+`curl http://localhost:8080/$restli_resource;format="camel"$/1`
 

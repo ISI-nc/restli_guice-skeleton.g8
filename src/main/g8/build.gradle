@@ -1,4 +1,9 @@
 // add rest.li's gradle plugins so they can be used throughout project
+allprojects  {
+  group = '$organization$'
+  version = '0.1'
+}
+
 buildscript {
   repositories {
     mavenLocal()
@@ -10,7 +15,7 @@ buildscript {
 }
 
 task wrapper(type: Wrapper) {
-  gradleVersion = '1.11'
+  gradleVersion = '2.0'
 }
 
 ext.spec = [
@@ -22,7 +27,8 @@ ext.spec = [
       'restliClient' : 'com.linkedin.pegasus:restli-client:' + pegasusVersion,
       'restliServer' : 'com.linkedin.pegasus:restli-server:' + pegasusVersion,
       'restliTools' : 'com.linkedin.pegasus:restli-tools:' + pegasusVersion,
-      'gradlePlugins' : 'com.linkedin.pegasus:gradle-plugins:' + pegasusVersion
+      'gradlePlugins' : 'com.linkedin.pegasus:gradle-plugins:' + pegasusVersion,
+      'guiceBridge' : 'com.linkedin.pegasus:restli-guice-bridge:'+ pegasusVersion
     ]
   ]
 ]
@@ -37,7 +43,7 @@ subprojects {
 
   afterEvaluate {
     if (project.plugins.hasPlugin('java')) {
-      sourceCompatibility = JavaVersion.VERSION_1_6
+      sourceCompatibility = JavaVersion.VERSION_1_7
     }
 
     // add the standard pegasus dependencies wherever the plugin is used
