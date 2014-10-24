@@ -1,13 +1,13 @@
-Rest.li Project Skeleton
+Rest.li + Guice Project Skeleton
 ========================
 
-A project skeleton generator for [rest.li](http://rest.li).
+A project skeleton generator for [rest.li](http://rest.li) and [guice](https://github.com/google/guice).
 
 Requirements
 ------------
 
-* Java 1.6+
-* <a href="http://www.gradle.org/">Gradle</a> 1.8+
+* Java 1.7
+* <a href="http://www.gradle.org/">Gradle</a> 2.0+
 * <a href="https://github.com/n8han/giter8">Giter8</a>
 
 Setup
@@ -30,40 +30,42 @@ Try it Out
 ----------
 
 ```
-$ g8 linkedin/rest.li-skeleton
+g8 git@github.com:ISI-nc/restli_guice-skeleton.g8
 
-Generating a new Rest.li project. 
+Creation d'un projet rest.li + Guice 
 
-organization [org.example]: org.example
-name [fortunes]: fortunes
-restli_resource [fortunes]: fortunes
-restli_resource_entity [Fortune]: Fortune
 
-Template applied in ./fortunes
+name [myRestLiProject]: 
+organization [nc.isi.service]: 
+project_description [Mon projet a moi]: 
+restli_resource [myDataRessource]: 
+restli_resource_entity [myDataTransfert]: 
+
+Template applied in ./myRestLiProject
 ```
 
-The fortunes directory now contains a skeleton rest.li project. You can build it and test it, .e.g.:
+The  directory now contains a skeleton rest.li + guice project. You can build it and test it, .e.g.:
 
 ```
-cd fortunes
+cd myREstLiProject
 gradle build
 ...
 
 gradle JettyRunWar
 ...
-> Building 90% > :fortunes-server:jettyRunWar > Running at http://localhost:8080/fortunes-server
+> Building 90% > :fortunes-server:jettyRunWar > Running at http://localhost:8080/
 
 ## in another terminal, do:
 
-curl http://localhost:8080/fortunes-server/fortunes/1
+curl http://localhost:8080/myDataRessource/1
 ...
-{"message":"Hello, Rest.li!"}
+{"message":"Hello, myRestLiProject"}
 ```
 
 To modify your rest.li resource, simply edit:
 
 ```
-fortunes-server/src/main/java/org/example/fortunes/impl/FortunesResource.java
+fortunes-server/src/main/java/nc/isi/service/myrestliproject/rest/MyDataResource.java
 ```
 
 Usage
@@ -73,11 +75,10 @@ To generate a project skeleton to fit your needs, set the properties:
 
 * 'organization' - The java package name to use for your application
 * 'name' - The name of your application, used for the gradle project name
+* 'project_description' - description of your project set in web.xml
 * 'restli_resource' - The name of inital sample REST resource to generate, you can easily add others later
 * 'restli_resource_entity' - The name of the initial REST entity for your resource, you can add more of these later as well
 
-You can pass in any of these properties as arguments, if you do this, any you do not set will use their default value (e.g. 'fortunes').
+You can pass in any of these properties as arguments, if you do this, any you do not set will use their default value.
 
-```
-g8 linkedin/rest.li-skeleton --organization=com.company.project --name=project --restli_resource=examples --restli_resource_entity=Example
-```
+
